@@ -14,40 +14,47 @@ A collection of production-ready AWS automation scripts and Lambda functions. Ea
 
 ---
 
-## Examples
+## Projects
 
-### Lambda Functions
+### Lambda Functions (Python / Boto3)
 
-| Project | Description | Runtime |
-|---|---|---|
-| [AWS-Lambda-startEC2](https://github.com/LucasRios/AWS-Lambda-startEC2) | Starts EC2 instances on a schedule or trigger | Python |
-| [AWS-Lambda-stopEC2](https://github.com/LucasRios/AWS-Lambda-stopEC2) | Stops EC2 instances to reduce costs during off-hours | Python |
-| [AWSInfiniteBedtimeStory](https://github.com/LucasRios/AWSInfiniteBedtimeStory) | Generative AI story pipeline using AWS Bedrock | Python |
+| Project | Description |
+|---|---|
+| [AWS-Lambda-startEC2](AWS-Lambda-startEC2/) | Starts a list of EC2 instances — accepts instance IDs via event payload. Trigger via EventBridge schedule or manual invoke |
+| [AWS-Lambda-stopEC2](AWS-Lambda-stopEC2/) | Stops a list of EC2 instances — same interface as start. Typical use: cut costs during off-hours |
+| [infinite-bedtime-story](infinite-bedtime-story/) | Generative AI story pipeline using AWS Bedrock (Nova text + Polly audio + Nova Canvas images) |
 
-### Infrastructure & Networking
+### Infrastructure & Networking (C# / AWS SDK for .NET)
 
-| Project | Description | Runtime |
-|---|---|---|
-| [AWS-Atualizar-IP-Security-Group](https://github.com/LucasRios/AWS-Atualizar-IP-Security-Group) | Auto-updates Security Group rules when public IP changes — useful for dynamic IP connections to RDS | C# |
+| Project | Description |
+|---|---|
+| [SW_AWS_IP_UPDATE](SW_AWS_IP_UPDATE/) | Monitors the machine's public IP and auto-updates AWS Security Group ingress rules when it changes. Sends a SendGrid email notification on each update |
 
 ---
 
 ## Patterns Covered
 
-- **Scheduled Lambda** — EventBridge triggers for EC2 start/stop
-- **Dynamic IP management** — detect IP change, update AWS Security Group via SDK
-- **Generative AI on AWS** — Bedrock integration for content generation pipelines
-- **Cost optimization** — automated instance lifecycle management
+- **Scheduled Lambda** — EventBridge triggers for EC2 start/stop based on a cron expression
+- **Dynamic IP management** — detect public IP change, revoke old Security Group rule, authorize new IP
+- **Generative AI on AWS** — Bedrock integration (text, voice, image) in a full-stack Python pipeline
+- **Cost optimization** — automated EC2 lifecycle management to avoid paying for idle instances
 
----
+## Security Notes
+
+- Lambda functions use the **IAM execution role** — no credentials stored in code
+- `SW_AWS_IP_UPDATE` reads AWS credentials and SendGrid key from `swconfigIP.ini` — **never hardcoded**
+- `swconfigIP.ini` is listed in `.gitignore` and must never be committed
+- Use `swconfigIP.ini.example` as the template
 
 ## Tech Stack
 
-- **AWS Lambda** — serverless compute
+- **AWS Lambda** — serverless compute (Python 3.12+)
 - **Amazon EC2** — virtual machines
-- **Amazon Bedrock** — generative AI
+- **Amazon Bedrock** — generative AI (Nova, Polly)
 - **AWS Security Groups** — network access control
-- **AWS SDK for .NET / Boto3** — programmatic AWS access
+- **Boto3** — AWS SDK for Python
+- **AWS SDK for .NET** — C# integration (SW_AWS_IP_UPDATE)
+- **SendGrid** — transactional email notification
 
 ---
 

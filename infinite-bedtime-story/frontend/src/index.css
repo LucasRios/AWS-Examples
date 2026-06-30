@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900;
+    @apply font-fairy text-white;
+    @apply overflow-hidden;   
+   }
+  
+  html, body, #root {
+    @apply h-full w-full;
+  }
+}
+
+@layer components {
+  .magic-button {
+    @apply bg-gradient-to-r from-magic-500 to-dream-500;
+    @apply hover:from-magic-600 hover:to-dream-600;
+    @apply text-white font-semibold py-3 px-6 rounded-full;
+    @apply transform transition-all duration-300;
+    @apply hover:scale-105 hover:shadow-lg;
+    @apply focus:outline-none focus:ring-4 focus:ring-magic-300;
+  }
+  
+  .glass-panel {
+    @apply bg-white/10 backdrop-blur-md border border-white/20;
+    @apply rounded-2xl shadow-2xl;
+  }
+  
+  .story-text {
+    @apply font-story text-lg leading-relaxed;
+    @apply text-white drop-shadow-lg;
+  }
+  
+  .wizard-input {
+    @apply w-full px-4 py-3 rounded-xl;
+    @apply bg-white/20 backdrop-blur-sm;
+    @apply border border-white/30 text-white placeholder-white/70;
+    @apply focus:outline-none focus:ring-2 focus:ring-magic-400;
+    @apply transition-all duration-300;
+  }
+}

@@ -1,0 +1,26 @@
+# Template de configuração para SW_AWS_IP_UPDATE
+# Copie este arquivo para swconfigIP.ini e preencha com os valores reais.
+# ⚠️ NUNCA comite o swconfigIP.ini (está no .gitignore) — ele contém credenciais.
+
+[DATA]
+# IP público atual da máquina (preenchido automaticamente pelo programa)
+IP         = 0.0.0.0
+
+# Nome do cliente ou instância — aparece no assunto do e-mail de notificação
+DESCRICAO  = NomeDoCliente
+
+# Credenciais AWS IAM com permissão em EC2 Security Groups
+# Permissões mínimas: ec2:AuthorizeSecurityGroupIngress, ec2:RevokeSecurityGroupIngress
+AWS_KEY    = YOUR_AWS_ACCESS_KEY_ID
+AWS_SECRET = YOUR_AWS_SECRET_ACCESS_KEY
+
+# ID do Security Group a atualizar (ex: sg-0abc123def456)
+SG_GROUP   = sg-XXXXXXXXXXXXXXXXX
+
+# Porta TCP a liberar no Security Group (ex: 1433 para SQL Server, 3306 para MySQL)
+SG_PORT    = 1433
+
+# Configuração do e-mail de notificação via SendGrid
+SENDGRID_KEY = YOUR_SENDGRID_API_KEY
+EMAIL_FROM   = remetente@suaempresa.com.br
+EMAIL_TO     = destinatario@suaempresa.com.br
