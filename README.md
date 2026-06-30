@@ -21,7 +21,8 @@ AWS-Examples/
 ├── AWS-Lambda-startEC2/   ← Python — Lambda to start EC2 instances from a list
 ├── AWS-Lambda-stopEC2/    ← Python — Lambda to stop EC2 instances from a list
 ├── infinite-bedtime-story/← Python / React — AWS Bedrock generative story pipeline
-└── SW_AWS_IP_UPDATE/      ← C# — monitors public IP, updates Security Group rules
+├── SW_AWS_IP_UPDATE/      ← C# — monitors public IP, updates Security Group rules
+└── SWEmails/              ← C# — serverless email capture pipeline (IMAP + Gmail + Outlook → SQL Server)
 ```
 
 ---
@@ -41,6 +42,7 @@ AWS-Examples/
 | Project | Description |
 |---|---|
 | [SW_AWS_IP_UPDATE](SW_AWS_IP_UPDATE/) | Monitors the machine's public IP and auto-updates AWS Security Group ingress rules when it changes. Sends a SendGrid email notification on each update |
+| [SWEmails](SWEmails/) | Serverless three-Lambda email capture pipeline — syncs IMAP, Gmail, and Outlook accounts to SQL Server using SQS and S3 as the transport layer |
 
 ---
 
