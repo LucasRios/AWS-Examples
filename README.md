@@ -14,6 +14,18 @@ A collection of production-ready AWS automation scripts and Lambda functions. Ea
 
 ---
 
+## Project Structure
+
+```
+AWS-Examples/
+├── AWS-Lambda-startEC2/   ← Python — Lambda to start EC2 instances from a list
+├── AWS-Lambda-stopEC2/    ← Python — Lambda to stop EC2 instances from a list
+├── infinite-bedtime-story/← Python / React — AWS Bedrock generative story pipeline
+└── SW_AWS_IP_UPDATE/      ← C# — monitors public IP, updates Security Group rules
+```
+
+---
+
 ## Projects
 
 ### Lambda Functions (Python / Boto3)
@@ -29,6 +41,26 @@ A collection of production-ready AWS automation scripts and Lambda functions. Ea
 | Project | Description |
 |---|---|
 | [SW_AWS_IP_UPDATE](SW_AWS_IP_UPDATE/) | Monitors the machine's public IP and auto-updates AWS Security Group ingress rules when it changes. Sends a SendGrid email notification on each update |
+
+---
+
+## Getting Started
+
+**Lambda functions** require Python 3.12+ and an AWS account. Deploy via the AWS Console or CLI:
+
+```bash
+# Package and deploy a Lambda manually
+cd AWS-Lambda-startEC2
+zip -r function.zip lambda_function.py
+aws lambda create-function \
+  --function-name StartEC2Instances \
+  --runtime python3.12 \
+  --handler lambda_function.lambda_handler \
+  --role arn:aws:iam::ACCOUNT_ID:role/LambdaEC2Role \
+  --zip-file fileb://function.zip
+```
+
+**SW_AWS_IP_UPDATE** requires .NET Framework 4.6.1 and Visual Studio. Copy `swconfigIP.ini.example` to `swconfigIP.ini` and fill in your credentials before building.
 
 ---
 
